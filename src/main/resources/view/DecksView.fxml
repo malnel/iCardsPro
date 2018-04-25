@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #DEF2F1;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.flashcards.controller.DecksController">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tbl_decks" prefHeight="460.0" prefWidth="841.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
+                    <columns>
+                      <TableColumn fx:id="col_number" prefWidth="32.0" />
+                      <TableColumn fx:id="col_deck_name" prefWidth="428.00000762939453" text="Deck name" />
+                        <TableColumn fx:id="col_cards" prefWidth="88.0" text="Cards" />
+                        <TableColumn fx:id="col_starred" prefWidth="93.0" text="Starred" />
+                        <TableColumn fx:id="col_last_score" minWidth="4.0" prefWidth="101.0" text="Last score [%]" />
+                        <TableColumn fx:id="col_average_score" minWidth="4.0" prefWidth="95.0" text="Avg card skill" />
+                    </columns>
+                     <effect>
+                        <InnerShadow />
+                     </effect>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <Pane prefHeight="70.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label layoutX="364.0" layoutY="13.0" text="iCards Pro" textFill="#17252a">
+                     <font>
+                        <Font name="Apple SD Gothic Neo Heavy" size="36.0" />
+                     </font>
+                     <effect>
+                        <DropShadow color="#00000099" height="6.0" offsetX="2.0" offsetY="2.0" radius="2.5" width="6.0" />
+                     </effect>
+                  </Label>
+                  <Button fx:id="btn_logout" layoutX="771.0" layoutY="22.0" mnemonicParsing="false" onMouseClicked="#logoutAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Log out" textFill="WHITE" />
+               </children>
+            </Pane>
+         </top>
+         <bottom>
+            <Pane prefHeight="90.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="btn_export" layoutX="81.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#exportToFileAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Export to file" textFill="WHITE" />
+                  <Button fx:id="btn_show_cards" layoutX="238.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#showCardsAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Show cards" textFill="WHITE" />
+                  <Button fx:id="btn_study" layoutX="400.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#studyAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #2B7A78;" text="Study!" textFill="WHITE" />
+                  <Button fx:id="btn_add_new" layoutX="564.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#addNewAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Add new" textFill="WHITE" />
+                  <Button fx:id="btn_delete" layoutX="741.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#deleteAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Delete" textFill="WHITE" />
+               </children>
+            </Pane>
+         </bottom>
+         <right>
+            <Pane prefHeight="200.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+         </right>
+         <left>
+            <Pane prefHeight="200.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>
