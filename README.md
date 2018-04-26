@@ -9,9 +9,10 @@ or export deck to a txt file.
 
 You can add new decks by typing front and back of the card or by uploading a text file
 of this format :
-	#comment
-	front | back
-	front | back
+
+- 	#comment
+-	front | back
+-	front | back
 	
 When you add a card, it is initially assigned a skill of 3. When you study and answer
 correctly - the skill will go up by 1 point. If your answer is wrong, skill will drop by 1.
@@ -26,8 +27,8 @@ You can also add all cards you have marked as starred
 or all cards you answered incorrectly last time you studied.
 
 I created this app with the use of:
-JavaFX for the beautiful looks,
-Hibernate for the database connection,
-Maven as my build automation tool.
+- JavaFX for the beautiful looks,
+- Hibernate for the database connection,
+- Maven as my build automation tool.
 
 Enjoy!
