@@ -70,7 +70,7 @@ public class DecksController {
     private Button btn_export;
 
     @FXML
-    private Button btn_show_cards;
+    private Button btn_show_stats;
 
     @FXML
     private Button btn_study;
@@ -181,9 +181,86 @@ public class DecksController {
     	}
 
 	@FXML
-    void showCardsAction(MouseEvent event) {
+    void showStatsAction(MouseEvent event) throws IOException {
     		
+		if (Objects.isNull(tbl_decks.getSelectionModel())
+				|| Objects.isNull(tbl_decks.getSelectionModel().getSelectedItem())) {
+
+			Alert error = new Alert(AlertType.ERROR);
+			error.setHeaderText("ERROR");
+			error.setContentText("Please select the deck.");
+			error.setTitle("No selected item!");
+			error.show();
+			return;
+		}
+
+		int id = tbl_decks.getSelectionModel().getSelectedItem().getId();
+		Deck deck = new Deck(id);
+		deck = deckService.selectDeck(deck);
+	
+		countDeckStats(deck);
+		
     }
+
+	private void countDeckStats(Deck deck) {
+		CardService cardService = new CardService();
+		List <Card> cards = cardService.getAll(deck);
+		
+		int numbOfAll = cards.size();
+		int numbOfStarred = 0;
+		int numbOfCorrect = 0;
+		int numbOf5 = 0;
+		int numbOf4 = 0;
+		int numbOf3 = 0;
+		int numbOf2 = 0;
+		int numbOf1 = 0;
+		
+		for (Card card : cards) {
+			if (card.isStarred()) {
+				numbOfStarred++;
+			}
+			if (card.isLastAnswerCorrect()) {
+				numbOfCorrect++;
+			}
+			if (5 == card.getSkill()) {
+				numbOf5++;
+				continue;
+			}
+			if (4 == card.getSkill()) {
+				numbOf4++;
+				continue;
+			}
+			if (3 == card.getSkill()) {
+				numbOf3++;
+				continue;
+			}
+			if (2 == card.getSkill()) {
+				numbOf2++;
+				continue;
+			}
+			if (1 == card.getSkill()) {
+				numbOf1++;
+				continue;
+			}
+		}
+		
+		Alert stats = new Alert(AlertType.INFORMATION);
+		stats.setHeaderText("Statistics");
+		stats.setContentText(
+				    "\t\t\t         Deck:\t" + deck.getName()
+				+ "\n\t\t\t        Cards:\t" + numbOfAll
+				+ "\n\t\t\t      Starred:\t" + numbOfStarred
+				+ "\n  Last answered correctly:\t" + numbOfCorrect
+				+ "\n\n\t\t      Cards score"
+				+ "\n\t\t\t\t skill 5:\t" + numbOf5
+				+ "\n\t\t\t\t skill 4:\t" + numbOf4
+				+ "\n\t\t\t\t skill 3:\t"  + numbOf3
+				+ "\n\t\t\t\t skill 2:\t"  + numbOf2
+				+ "\n\t\t\t\t skill 1:\t"  + numbOf1);
+		stats.setTitle("Here are statistics of this deck.");
+		stats.show();
+	}
+    
 
     @FXML
     void studyAction(MouseEvent event) throws IOException {

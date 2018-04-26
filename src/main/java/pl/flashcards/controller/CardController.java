@@ -169,6 +169,8 @@ public class CardController {
     		Parent parent = FXMLLoader.load(getClass().getResource("/view/DecksView.fxml"));
 		Scene scene = new Scene(parent);
 		Main.getPrimaryStage().setScene(scene);
+		
+		Main.setSelectedDeck(null);
     }
 
     @FXML

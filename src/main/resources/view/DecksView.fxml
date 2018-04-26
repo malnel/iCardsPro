@@ -52,7 +52,7 @@
             <Pane prefHeight="90.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="btn_export" layoutX="81.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#exportToFileAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Export to file" textFill="WHITE" />
-                  <Button fx:id="btn_show_cards" layoutX="238.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#showCardsAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Show cards" textFill="WHITE" />
+                  <Button fx:id="btn_show_stats" layoutX="238.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#showStatsAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Statistics" textFill="WHITE" />
                   <Button fx:id="btn_study" layoutX="400.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#studyAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #2B7A78;" text="Study!" textFill="WHITE" />
                   <Button fx:id="btn_add_new" layoutX="564.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#addNewAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Add new" textFill="WHITE" />
                   <Button fx:id="btn_delete" layoutX="741.0" layoutY="36.0" mnemonicParsing="false" onMouseClicked="#deleteAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Delete" textFill="WHITE" />

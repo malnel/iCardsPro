@@ -127,6 +127,8 @@ public class NewDeckController {
 	    		Parent parent = FXMLLoader.load(getClass().getResource("/view/DecksView.fxml"));
 			Scene scene = new Scene(parent);
 			Main.getPrimaryStage().setScene(scene);
+			
+			Main.setSelectedDeck(null);
     		}
     }
 
@@ -135,6 +137,7 @@ public class NewDeckController {
     		
     		deckService = new DeckService();
     		deckService.deleteDeck(deck);
+    		Main.setSelectedDeck(null);
     		
     		Parent parent = FXMLLoader.load(getClass().getResource("/view/DecksView.fxml"));
     		Scene scene = new Scene(parent);
@@ -188,11 +191,11 @@ public class NewDeckController {
     private DeckService deckService;
     
     public void initialize() {
-    		deck = new Deck();
-    		deck.setUserId(Main.getLoggedInUser().getId());
+    		
+	    	deck = new Deck();
+	    	deck.setUserId(Main.getLoggedInUser().getId());
+	    	saveDeckToDB(deck);
 		
-		saveDeckToDB(deck);
-    	
     		fillDecksData();
 
 		setCellValue();
