@@ -93,19 +93,6 @@ public class DeckService {
 		return numberOfStarred;
 	}
 	
-//	public void update(DeckDisplay deckDisplay) {
-//		Deck deck = new Deck(deckDisplay.getId());
-//		
-//		Session session = HibernateUtil.getSessionFactory().openSession();
-//		Transaction transaction = session.beginTransaction();
-//
-//		session.saveOrUpdate(deck);
-//		transaction.commit();
-//		session.close();
-//	}
-	
-	
-	
 	public int save(Deck deck) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
@@ -180,5 +167,16 @@ public class DeckService {
 		trx.commit();
 		session.close();
 	}
+	
+//	public void update(DeckDisplay deckDisplay) {
+//		Deck deck = new Deck(deckDisplay.getId());
+//	
+//		Session session = HibernateUtil.getSessionFactory().openSession();
+//		Transaction transaction = session.beginTransaction();
+//
+//		session.saveOrUpdate(deck);
+//		transaction.commit();
+//		session.close();
+//	}
 	
 }

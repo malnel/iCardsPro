@@ -1,0 +1,14 @@
+# Git
+# Created by gosia
+Stwórz repozytorium w katalogu | git init
+dodaj do śledzenia zawartość folderu | git add .
+pokaż zmiany w plikach niewysłane do poczekalni | git diff
+pokaż zmiany w plikach oczekujących na zatwierdzenie | git diff --staged
+usunięcie śledzenia pliku test.txt | git rm --cached test.txt
+zakomituj zmiany z komentarzem "comment" | git commit -m "comment"
+sprawdź, które pliki są śledzone | git status
+stwórz gałąź o nazwie test | git branch test
+wyświetl listę gałęzi | git branch --list
+połącz gałąź z gałęzią podrzędną test | git merge test
+przełącz na gałąź master | git checkout master
+sklonuj repozytorium z adresu "url" | git clone url

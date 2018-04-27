@@ -1,9 +1,7 @@
 package pl.flashcards.controller;
 
 import java.io.IOException;
-import java.util.Objects;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -63,7 +61,6 @@ public class SigninController {
 	    		pf_password.setText(tf_password.getText());
 	    		btn_show.setText("Show");
 	    	}
-    
     }
 
     /**

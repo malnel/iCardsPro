@@ -105,9 +105,12 @@ public class CardController {
     @FXML
     private Button btn_previous;
 
+    /**
+     * If checkbox cb_type is selected, textfield tf_answer is enabled and user can type answers.
+     * @param event
+     */
     @FXML
     void enableTypeAction(MouseEvent event) {
-    		boolean enableType;
     		if (cb_type.isSelected()) {
     			tf_answer.setDisable(false);
     		} else {
@@ -116,8 +119,18 @@ public class CardController {
     		}
     }
 
+    /**
+     * Flip card to see the other side.
+     * If checkbox cb_type is selected, then check if answer in textfield matches the other side
+     * of the card. If yes, then proceed to rightAction.
+     * Else enable buttons to ask user if their answer was correct.
+     * If checkbox is not selected, then enable buttons to ask user if their answer was correct.
+     * If answer was correct - go to rightAction. If it was incorrect - go to wrongAction.
+     * @param event
+     */
     @FXML
     void flipAction(MouseEvent event) {
+    	
     		if (lbl_front.isVisible()) {
     			lbl_front.setVisible(false);
     			lbl_back.setVisible(true);
@@ -139,17 +152,18 @@ public class CardController {
             		btn_previous.setVisible(false);
     			}
     		} else {
-
         		btn_flip.setVisible(false);
         		btn_right.setVisible(true);
         		btn_wrong.setVisible(true);
         		btn_next.setVisible(false);
         		btn_previous.setVisible(false);
-    		}
-
-    		
+    		}	
     }
 
+    /**
+     * Flip all cards to study the other side.
+     * @param event
+     */
     @FXML
     void flipAllAction(MouseEvent event) {
     		for (int i = 0; i < activeCards.size(); i++) {
@@ -241,33 +255,31 @@ public class CardController {
     		nextCard();
     }
 
-
     @FXML
     void previousAction(MouseEvent event) {
     		previousCard();
     }
     
-    private static List<Card> activeCards;
-    private static Card activeCard;
-    private static int cardIndex;
-    private static CardService cardService = new CardService();
-    private static DeckService deckService = new DeckService();
-    private static int numberOfCards;
-    private static int numberOfStarred;
-    private static Set<Integer> playedCardIds = new HashSet<>();
-    private static double lastScore = Main.getSelectedDeck().getLastScore();
-    private static double averageScore = Main.getSelectedDeck().getAverageScore();
+    private List<Card> activeCards;
+    private Card activeCard;
+    private int cardIndex;
+    private CardService cardService = new CardService();
+    private DeckService deckService = new DeckService();
+    private int numberOfCards;
+    private int numberOfStarred;
+    private Set<Integer> playedCardIds = new HashSet<>();
+    private double lastScore = Main.getSelectedDeck().getLastScore();
+    private double averageScore = Main.getSelectedDeck().getAverageScore();
     
     
     public void initialize() {
-    		//activeCards = cardService.getAll(Main.getSelectedDeck());
     		activeCards = CardSelectionController.selectedCards;
     		checkCardsInfo(Main.getSelectedDeck());
     		cardIndex = 0;
     		playedCardIds.clear();
     		activeCard = activeCards.get(cardIndex);
     		displayCard(activeCard);	
-}
+    }
     
     public void checkCardsInfo(Deck deck) {
     		numberOfCards = CardSelectionController.selectedCards.size();
@@ -391,7 +403,6 @@ public class CardController {
     }
     
     private void calculateScores(Deck deck) {
-    	
     		averageScore = 0;
     		int correctAnswers = 0;
     		
@@ -400,7 +411,6 @@ public class CardController {
     		}
 		averageScore = round((averageScore / activeCards.size()) , 1);
 
-    		
 		for (Card card : activeCards) {
 			if (card.isLastAnswerCorrect()) {
 				correctAnswers++;
@@ -412,8 +422,7 @@ public class CardController {
     		deck.setLastScore(lastScore);
     		deck.setAverageScore(averageScore);
     		
-    		deckService.updateDeckToDB(deck);
-    		
+    		deckService.updateDeckToDB(deck); 		
     }
     
     public double round(double value, int places) {
@@ -424,9 +433,5 @@ public class CardController {
         long tmp = Math.round(value);
         return (double) tmp / factor;
     }
-    
-    
-
-    
     
 }

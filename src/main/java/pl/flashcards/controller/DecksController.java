@@ -6,32 +6,21 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
-import javax.swing.JFileChooser;
-
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import pl.flashcards.Main;
 import pl.flashcards.model.Card;
 import pl.flashcards.model.Deck;
@@ -99,6 +88,7 @@ public class DecksController {
 
     @FXML
     void deleteAction(MouseEvent event) {
+    	
     		if (Objects.isNull(tbl_decks.getSelectionModel())
 				|| Objects.isNull(tbl_decks.getSelectionModel().getSelectedItem())) {
 
@@ -146,7 +136,6 @@ public class DecksController {
 			success.setTitle("Cards have been saved.!");
 			success.show();
 		}
-
     }
 
     	private String getCardsData(Deck deck) {
@@ -164,19 +153,14 @@ public class DecksController {
     			String front = card.getFront();
     			String back = card.getBack();
     			cardsInfo += "\n" + front + " | " + back;
-    		}
-    			
+    		}	
     		return cardsInfo;
     	}
     	
-    	private void saveDeckToFile(File file, Deck deck) throws FileNotFoundException {
-    			
-    			PrintWriter writer = new PrintWriter(file);
-    			    			
-    			String value = getCardsData(deck);
-    			
+    	private void saveDeckToFile(File file, Deck deck) throws FileNotFoundException {		
+    			PrintWriter writer = new PrintWriter(file);	
+    			String value = getCardsData(deck);	
     			writer.println(value);
-
     			writer.close();
     	}
 
@@ -198,8 +182,7 @@ public class DecksController {
 		Deck deck = new Deck(id);
 		deck = deckService.selectDeck(deck);
 	
-		countDeckStats(deck);
-		
+		countDeckStats(deck);	
     }
 
 	private void countDeckStats(Deck deck) {
@@ -274,7 +257,6 @@ public class DecksController {
 			error.setTitle("No selected item!");
 			error.show();
 			return;
-
 		}
 
 		int id = tbl_decks.getSelectionModel().getSelectedItem().getId();
@@ -287,10 +269,9 @@ public class DecksController {
 		Parent parent = FXMLLoader.load(getClass().getResource("/view/CardSelectionView.fxml"));
 		Scene scene = new Scene(parent);
 		Main.getPrimaryStage().setScene(scene);
-  
     }
     
-    private static DeckService deckService = new DeckService();
+    private DeckService deckService = new DeckService();
     private List<DeckDisplay> deckDisplays;
         
     public void initialize() {
@@ -298,10 +279,8 @@ public class DecksController {
 
 		setCellValue();
 		
-		// włączenie edytowania w tabeli
 		tbl_decks.setEditable(true);
 
-		// metoda odpowiedzialna za obsługę edycji na poszczególnych polach
 		//editCells();
 		
     }
@@ -325,7 +304,6 @@ public class DecksController {
 	}
 
 	private void setCellValue() {
-
 		col_number.setCellValueFactory(new PropertyValueFactory<>("number"));
 		col_deck_name.setCellValueFactory(new PropertyValueFactory<>("name"));
 		col_cards.setCellValueFactory(new PropertyValueFactory<>("numberOfCards"));

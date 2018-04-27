@@ -2,20 +2,12 @@ package pl.flashcards.controller;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringTokenizer;
 
-import javax.swing.JFileChooser;
-
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,11 +24,9 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import javafx.util.Callback;
 import pl.flashcards.Main;
 import pl.flashcards.model.Card;
 import pl.flashcards.model.Deck;
-import pl.flashcards.model.DeckDisplay;
 import pl.flashcards.service.CardService;
 import pl.flashcards.service.DeckService;
 
@@ -80,12 +70,16 @@ public class NewDeckController {
 
     @FXML
     void addCardAction(MouseEvent event) {
-    		if ("".equals(tf_front.getText()) || "".equals(tf_back.getText())) {
+    	
+    		if ("".equals(tf_front.getText()) ||
+    			"".equals(tf_back.getText())) {
+    			
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setHeaderText("Error");
     			alert.setContentText("Type front and back side of your card.");
     			alert.setTitle("Card is not filled");
     			alert.show();
+    			
     		} else if (isStringLengthOk(tf_front.getText()) &&
     				   isStringLengthOk(tf_back.getText())) {
     			
@@ -95,7 +89,9 @@ public class NewDeckController {
     			setCellValue();
     			tf_front.setText("");
     			tf_back.setText("");
+    			
     		} else {
+    			
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setHeaderText("Error");
     			alert.setContentText("Card value is too long. Use max 255 characters.");
@@ -108,11 +104,13 @@ public class NewDeckController {
     void addDeckAction(MouseEvent event) throws IOException {
     		
     		if("".equals(tf_deck_name.getText())) {
+    			
     			Alert alert = new Alert(AlertType.ERROR);
     			alert.setHeaderText("Error");
     			alert.setContentText("Enter name of the deck.");
     			alert.setTitle("No deck name.");
     			alert.show();
+    			
     		} else {
     			
     			deckService = new DeckService();
@@ -164,7 +162,6 @@ public class NewDeckController {
 
 		fillDecksData();
 		setCellValue();
-
     }
 
     @FXML
@@ -180,14 +177,10 @@ public class NewDeckController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		
     }
     
     private Deck deck;
-    
     private CardService cardService;
-    
     private DeckService deckService;
     
     public void initialize() {
@@ -202,7 +195,6 @@ public class NewDeckController {
 		
 		tf_front.clear();
 		tf_back.clear();
-		
     }
     
     private void fillDecksData() {
@@ -251,9 +243,6 @@ public class NewDeckController {
 	      StringTokenizer tokenizer;
 	      BufferedReader reader = new BufferedReader(new FileReader(file));
 
-	      // Clear the deck.
-
-
 	      // Try reading from the file. If an error occurs, close the file.
 
 	      reader = new BufferedReader(new FileReader(file));
@@ -298,7 +287,3 @@ public class NewDeckController {
 	   }
 	
 }
-
-
-
-

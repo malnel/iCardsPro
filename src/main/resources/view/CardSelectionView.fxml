@@ -35,9 +35,9 @@
                   </TableView>
                   <Button fx:id="btn_add_card" layoutX="117.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#addCardAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #3aafa9;" text="Add card" textFill="WHITE" />
                   <Button fx:id="btn_delete_card" layoutX="6.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#deleteCardAction" prefHeight="27.0" prefWidth="98.0" style="-fx-background-color: #3aafa9;" text="Delete card" textFill="WHITE" />
-                  <CheckBox fx:id="cb_starred" layoutX="313.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#addStarredAction" text="Add starred" />
-                  <CheckBox fx:id="cb_last_incorrect" layoutX="452.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#addLastIncorrectAction" text="Add last answerred incorrectly" />
-                  <ComboBox fx:id="cmb_skill_selection" layoutX="6.0" layoutY="413.0" onMouseClicked="#selectSkillAction" prefHeight="27.0" prefWidth="267.0" promptText="All cards" />
+                  <CheckBox fx:id="cb_starred" layoutX="313.0" layoutY="417.0" mnemonicParsing="false" text="Add starred" />
+                  <CheckBox fx:id="cb_last_incorrect" layoutX="452.0" layoutY="417.0" mnemonicParsing="false" text="Add last answerred incorrectly" />
+                  <ComboBox fx:id="cmb_skill_selection" layoutX="6.0" layoutY="413.0" prefHeight="27.0" prefWidth="267.0" promptText="All cards" />
                   <Button fx:id="btn_select" layoutX="735.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#selectAction" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #2B7A78;" text="Select " textFill="WHITE" />
                   <Label fx:id="lbl_deck_name" alignment="CENTER" layoutX="239.0" layoutY="14.0" prefHeight="17.0" prefWidth="362.0" text="Deck name" textFill="#69115e">
                      <font>

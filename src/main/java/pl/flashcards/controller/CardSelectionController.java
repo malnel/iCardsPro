@@ -34,7 +34,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 import pl.flashcards.Main;
 import pl.flashcards.model.Card;
-import pl.flashcards.model.Deck;
 import pl.flashcards.service.CardService;
 
 public class CardSelectionController {
@@ -92,27 +91,14 @@ public class CardSelectionController {
 
     @FXML
     void addCardAction(MouseEvent event) {
-    		
     		Card card = new Card("front","back",Main.getSelectedDeck().getId(),3);
     		cardService.saveCardToDB(card);
     		
-    		fillCardsData();
-    	
-    }
-
-    @FXML
-    void addLastIncorrectAction(MouseEvent event) {
-
-    }
-
-    @FXML
-    void addStarredAction(MouseEvent event) {
-
+    		fillCardsData(); 	
     }
 
     @FXML
     void cancelAction(MouseEvent event) throws IOException {
-
     		Parent parent = FXMLLoader.load(getClass().getResource("/view/DecksView.fxml"));
 		Scene scene = new Scene(parent);
 		Main.getPrimaryStage().setScene(scene);
@@ -120,6 +106,7 @@ public class CardSelectionController {
 
     @FXML
     void deleteCardAction(MouseEvent event) {
+    	
     		if (Objects.isNull(tbl_cards.getSelectionModel())
 				|| Objects.isNull(tbl_cards.getSelectionModel().getSelectedItem())) {
 
@@ -136,11 +123,11 @@ public class CardSelectionController {
 		cardService.deleteCard(card);
 
 		fillCardsData();
-    	
     }
 
     @FXML
     void selectAction(MouseEvent event) {
+    	
     		String skillSelection = cmb_skill_selection.getValue();
     		int skillSetting = 0;
     		boolean addStarred = cb_starred.isSelected();
@@ -171,8 +158,6 @@ public class CardSelectionController {
     		}
     		
     		filterSelection(skillSetting, addStarred, addLastAnswerIncorrect);
-    		System.out.println(cards);
-    		//selectCardsWithSkillSetting(skillSetting);
     		    		
     		ObservableList<Card> data = FXCollections.observableArrayList(cards);
     			
@@ -181,10 +166,7 @@ public class CardSelectionController {
     		
     		setCellValue();
     		tbl_cards.setEditable(true);
-    		editCells();
-    		
-    		
-    		
+    		editCells();	
     }
 
 	private void filterSelection(int skillSetting, boolean addStarred, boolean addLastAnswerIncorrect) {
@@ -195,9 +177,7 @@ public class CardSelectionController {
 			for (Card card : cards) {
 				if (card.isStarred()) {
 					card.setSelected(true);
-				} else {
-					selectCardsWithSkillSetting(skillSetting);
-				}
+				} 
 			}
 		}
 		
@@ -205,9 +185,7 @@ public class CardSelectionController {
 			for (Card card : cards) {
 				if (!card.isLastAnswerCorrect()) {
 					card.setSelected(true);
-				} else {
-					selectCardsWithSkillSetting(skillSetting);
-				}
+				} 
 			}
 		}
 		
@@ -215,9 +193,7 @@ public class CardSelectionController {
 			for (Card card : cards) {
 				if (card.isStarred() || !card.isLastAnswerCorrect()) {
 					card.setSelected(true);
-				} else {
-					selectCardsWithSkillSetting(skillSetting);
-				}
+				} 
 			}
 		}
 	}
@@ -233,11 +209,6 @@ public class CardSelectionController {
 	}
 
     @FXML
-    void selectSkillAction(MouseEvent event) {
-
-    }
-
-    @FXML
     void studyAction(MouseEvent event) throws IOException {
     	
     		selectedCards = filterSelectedCards(cards);
@@ -245,13 +216,11 @@ public class CardSelectionController {
     		Parent parent = FXMLLoader.load(getClass().getResource("/view/CardView.fxml"));
 		Scene scene = new Scene(parent);
 		Main.getPrimaryStage().setScene(scene);
-
     }
     
     private CardService cardService = new CardService();
-    private static List<Card> cards;
-	static List<Card> selectedCards = new ArrayList<Card>();
-	
+    private List<Card> cards;
+	public static List<Card> selectedCards = new ArrayList<Card>();
 	private ObservableList<String> skillSelection = FXCollections.observableArrayList(
 			"All cards",
 			"Skill 4 or lower",
@@ -260,7 +229,6 @@ public class CardSelectionController {
 			"Skill 1",
 			"No selection");
 
-    
     public void initialize() {
     	
 		cmb_skill_selection.setItems(skillSelection);
@@ -269,18 +237,15 @@ public class CardSelectionController {
 
 		setCellValue();
 		
-		// włączenie edytowania w tabeli
 		tbl_cards.setEditable(true);
 
-		// metoda odpowiedzialna za obsługę edycji na poszczególnych polach
-		editCells();
-	
-}
+		editCells();	
+    }
     
     private void fillCardsData() {
     	
     		lbl_deck_name.setText(Main.getSelectedDeck().getName());
-    	 
+    		
 		cards = cardService.getAll(Main.getSelectedDeck());
 		
 		for (Card card : cards) {
@@ -303,7 +268,6 @@ public class CardSelectionController {
 	}
 
 	private void setCellValue() {
-
 		col_select.setCellValueFactory(new PropertyValueFactory<>("isSelected"));
 		col_number.setCellValueFactory(new PropertyValueFactory<>("number"));
 		col_front.setCellValueFactory(new PropertyValueFactory<>("front"));
@@ -311,7 +275,6 @@ public class CardSelectionController {
 		col_skill.setCellValueFactory(new PropertyValueFactory<>("skill"));
 		col_star.setCellValueFactory(new PropertyValueFactory<>("isStarred"));
 		col_last_answer.setCellValueFactory(new PropertyValueFactory<>("lastAnswerCorrect"));
-
 	}
 	
 	private void editSelectCell() {
@@ -392,7 +355,6 @@ public class CardSelectionController {
 				selectedCards.add(cards.get(i));
 			}
 		}
-		
 		return selectedCards;
 	}
 

@@ -39,10 +39,10 @@ public class LoginController {
      */
     @FXML
     void loginAction(MouseEvent event) throws IOException {
+    	
     		String login = tf_login.getText();
 		String password = pf_password.getText();
-		
-		
+
 		boolean isLoggedIn = loginService.login(login, password);
 		if (isLoggedIn) {
     		Parent parent = FXMLLoader.load(getClass().getResource("/view/DecksView.fxml"));
